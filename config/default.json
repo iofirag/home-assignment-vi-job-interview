@@ -24,47 +24,27 @@
     "api": {
         "tmdb": {
             "host": "https://api.themoviedb.org",
+            "host2": "https://www.themoviedb.org",
             "basePath": "/3",
             "apiKey": "ac505a02032a33d65dd28b41f72182e1",
             "authentication": "/authentication/token/new",
-            "getMovieDetailsById": "/movie"
+            "getMovieDetailsById": "/movie",
+            "getTrendingSearchResult": "/search/trending",
+            "getPersonCombinedCreditsByPersonId": "/combined_credits"
         }
     },
-    "tmdb": {
-        "movieIdMap": {
-            "Fantastic Four (2005)": 9738,
-            "Fantastic Four: Rise of the Silver Surfer": 1979,
-            "Iron Man": 1726,
-            "The Incredible Hulk": 1724,
-            "Iron Man 2": 10138,
-            "Thor": 10195,
-            "Captain America: The First Avenger": 1771,
-            "The Avengers": 24428,
-            "Iron Man 3": 68721,
-            "Thor: The Dark World": 76338,
-            "Captain America: The Winter Soldier": 100402,
-            "Guardians of the Galaxy": 118340,
-            "Avengers: Age of Ultron": 99861,
-            "Ant-Man": 102899,
-            "Fantastic Four (2015)": 166424,
-            "Captain America: Civil War": 271110,
-            "Doctor Strange": 284052,
-            "Guardians of the Galaxy Vol. 2": 283995,
-            "Spider-Man: Homecoming": 315635,
-            "Thor: Ragnarok": 284053,
-            "Black Panther": 284054,
-            "Avengers: Infinity War": 299536,
-            "Ant-Man and the Wasp": 363088,
-            "Captain Marvel": 299537,
-            "Avengers: Endgame": 299534,
-            "Spider-Man: Far From Home": 429617
-        },
-        "people": {
-            "Chris Evans": 16828,
-            
-        }
-        "people": [
-            "Robert Downey Jr.", , "Mark Ruffalo", "Chris Hemsworth", 
+    "questionData": {
+        "movieList": [
+            "Fantastic Four (2005)", "Fantastic Four: Rise of the Silver Surfer", "Iron Man", 
+            "The Incredible Hulk", "Iron Man 2", "Thor", "Captain America: The First Avenger", 
+            "The Avengers", "Iron Man 3", "Thor: The Dark World", "Captain America: The Winter Soldier", 
+            "Guardians of the Galaxy", "Avengers: Age of Ultron", "Ant-Man", "Fantastic Four (2015)", 
+            "Captain America: Civil War", "Doctor Strange", "Guardians of the Galaxy Vol. 2", 
+            "Spider-Man: Homecoming", "Thor: Ragnarok", "Black Panther", "Avengers: Infinity War", 
+            "Ant-Man and the Wasp", "Captain Marvel", "Avengers: Endgame", "Spider-Man: Far From Home"
+        ],
+        "peopleList": [
+            "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Chris Hemsworth", 
             "Scarlett Johansson", "Jeremy Renner", "Don Cheadle", "Paul Rudd", 
             "Brie Larson", "Michael B. Jordan", "Karen Gillan", "Danai Gurira", 
             "Josh Brolin", "Gwyneth Paltrow", "Bradley Cooper", "Tom Holland", 

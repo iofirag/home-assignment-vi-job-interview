@@ -8,4 +8,6 @@ const movieService = container.resolve("movieService");
 //     getSameRoleActors: movieService.getSameRoleActors.bind(movieService),
 // };
 
-exports.listMoviesByActors = movieService.listMoviesByActors.bind(movieService)
+exports.listMoviesByActors = movieService.listMoviesByActors.bind(movieService);
+exports.listMultipleCharactersActors = movieService.listMultipleCharactersActors.bind(movieService);
+exports.getSameRoleActors = movieService.getSameRoleActors.bind(movieService);

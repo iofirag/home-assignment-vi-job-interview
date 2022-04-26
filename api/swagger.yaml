@@ -6,7 +6,7 @@ host: "localhost:3001"
 basePath: "/api/v1"
 paths:
   /listMoviesByActors:
-    post:
+    get:
       tags:
         - "1. Which Marvel movies did each actor play in?"
       description: "Which Marvel movies did each actor play in?"
@@ -23,7 +23,7 @@ paths:
           description: "server error"
 
   /listMultipleCharactersActors:
-    post:
+    get:
       tags:
         - "2. Actors who played more than one Marvel character?"
       description: "Actors who played more than one Marvel character?"
@@ -40,7 +40,7 @@ paths:
           description: "server error"
 
   /getSameRoleActors:
-    post:
+    get:
       tags:
         - "3. BONUS – Are there 2 different actors who played the same role?"
       description: "BONUS – Are there 2 different actors who played the same role?"

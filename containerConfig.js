@@ -29,9 +29,9 @@ container.register({
     }),
     // Classes
     movieService: Awilix.asClass(MovieService).singleton(),
-    movieHandler: Awilix.asClass(MovieHandler).inject(() => ({ config: config.get('tmdb') })).singleton(),
+    movieHandler: Awilix.asClass(MovieHandler).inject(() => ({ config: config.get('questionData') })).singleton(),
     // Vendor classes
-    tmdbService: Awilix.asClass(TmdbService).inject(() => ({ config: config.get('tmdb'), tmdbApiConfig: config.get('api').tmdb })).singleton(),
+    tmdbService: Awilix.asClass(TmdbService).inject(() => ({ tmdbApiConfig: config.get('api').tmdb })).singleton(),
     httpService: Awilix.asClass(HttpService).inject(() => ({ config: config.get('http') })).singleton(),
     logger: Awilix.asClass(Logger).inject(() => ({ config: config.get('log') })).singleton(),
     probe: Awilix.asClass(Probe).inject(() => ({ config: config.get('probe') })).singleton(),

@@ -49,7 +49,7 @@ module.exports = class MovieService {
             logObj.msg = error.message;
             res.statusCode = 500;
         } finally {
-            this._logger.log(logObj.isError ? 'error' : 'info', `${logObj.prefix} - ${logObj.msg}`, span, `time: ${logObj.sw.stop()/1000}`);
+            this._logger.log(logObj.isError ? 'error' : 'info', `${logObj.prefix} - ${logObj.msg}`, span);
             res.setHeader('Content-Type', 'application/json');
             res.end(result ? JSON.stringify(result || '') : '');
             span.finish();
@@ -73,7 +73,7 @@ module.exports = class MovieService {
             logObj.msg = error.message;
             res.statusCode = 500;
         } finally {
-            this._logger.log(logObj.isError ? 'error' : 'info', `${logObj.prefix} - ${logObj.msg}`, span, `time: ${logObj.sw.stop()/1000}`);
+            this._logger.log(logObj.isError ? 'error' : 'info', `${logObj.prefix} - ${logObj.msg}`, span);
             res.setHeader('Content-Type', 'application/json');
             res.end(result ? JSON.stringify(result || '') : '');
             span.finish();
