@@ -48,7 +48,7 @@ services:
             - elasticsearch
         environment:
             - ETCD_KEY_PREFIX=/configuration/testservice
-            - ETCD_ADDR=http://etcd:2380
+            - ETCD_HOST=http://etcd:2380
         restart: always
         ports:
             - 3001:3001
