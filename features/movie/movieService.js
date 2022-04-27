@@ -11,7 +11,7 @@ module.exports = class MovieService {
     async listMoviesByActors(req, res) {
         let result;
         const logObj = {
-            prefix: `${this.constructor.name} - ${req.swagger.operation.operationId}`,
+            prefix: `${this.constructor.name} - ${req.openapi.schema.operationId}`,
             isError: false,
             msg: 'success',
         };
@@ -35,7 +35,7 @@ module.exports = class MovieService {
     async listMultipleCharactersActors(req, res) {
         let result;
         const logObj = {
-            prefix: `${this.constructor.name} - ${req.swagger.operation.operationId}`,
+            prefix: `${this.constructor.name} - ${req.openapi.schema.operationId}`,
             isError: false,
             msg: 'success',
         };
@@ -59,7 +59,7 @@ module.exports = class MovieService {
     async getSameRoleActors(req, res) {
         let result;
         const logObj = {
-            prefix: `${this.constructor.name} - ${req.swagger.operation.operationId}`,
+            prefix: `${this.constructor.name} - ${req.openapi.schema.operationId}`,
             isError: false,
             msg: 'success',
         };
