@@ -1,13 +1,13 @@
 {
     "source": "local value",
-    "probe": {},
-    "tracer": {},
     "server": {
         "port": "3001"
     },
     "swagger": {
         "host": "http://localhost:3001"
     },
+    "probe": {},
+    "tracer": {},
     "log": {
         "fields": {
             "flow": "example-service",

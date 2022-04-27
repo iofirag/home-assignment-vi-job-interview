@@ -15,7 +15,7 @@
             "defaultValue": "http://localhost:3001"
         }
     },
-    "probe": {
+    "prxobe": {
         "key": "/configuration/testservice/probe",
         "defaultValue": {}
     },
@@ -51,6 +51,24 @@
         "level": {
             "key": "/configuration/testservice/log/level",
             "defaultValue": "debug"
+        }
+    },
+    "http": {
+        "key": "/configuration/testservice/http",
+        "defaultValue": {}
+    },
+    "api": {
+        "key": "/configuration/testservice/api",
+        "defaultValue": {}
+    },
+    "questionData": {
+        "movieList": {
+            "key": "/configuration/testservice/questionData/movieList",
+            "defaultValue": []
+        },
+        "peopleList": {
+            "key": "/configuration/testservice/questionData/peopleList",
+            "defaultValue": []
         }
     }
 }

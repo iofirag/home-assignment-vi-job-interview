@@ -1,9 +1,10 @@
-swagger: "2.0"
+openapi: "3.0.0"
 info:
   version: "1.0.0"
   title: 'example-service'
-host: "localhost:3001"
-basePath: "/api/v1"
+servers:
+  - url: /api/v1
+  - url: example-service/api/v1
 paths:
   /listMoviesByActors:
     get:
