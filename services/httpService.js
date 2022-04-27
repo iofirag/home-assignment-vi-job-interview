@@ -1,5 +1,4 @@
 const axios = require('axios');
-// const opentracing = require('opentracing');
 
 module.exports = class HttpService {
     constructor(config, logger, tracer) {

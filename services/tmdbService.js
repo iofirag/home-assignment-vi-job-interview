@@ -1,11 +1,8 @@
-const opentracing = require('opentracing');
-
 module.exports = class TMDBService {
-    constructor(httpService, tmdbApiConfig, logger, tracer) {
+    constructor(httpService, tmdbApiConfig, logger) {
         this._httpService = httpService;
         this._tmdbApiConfig = tmdbApiConfig;
         this._logger = logger;
-        this._tracer = tracer;
     }
 
     async getSearchMulti(str) {
