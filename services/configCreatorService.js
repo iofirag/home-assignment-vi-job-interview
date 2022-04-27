@@ -6,7 +6,7 @@ const templateJson = require('../config/template.json');
 
 const fsPromise = fs.promises;
 
-class ConfigCreatorService {
+module.exports = class ConfigCreatorService {
     constructor() {
         this._configJson = {};
         this._managementKeys = ['key', 'defaultValue'];
@@ -85,9 +85,9 @@ class ConfigCreatorService {
     }
 }
 
-(async () => {
-    setTimeout(async () => {
-        const configCreatorService = new ConfigCreatorService();
-        await configCreatorService.init();
-    }, 1000 * 15);
-})();
+// (async () => {
+//     setTimeout(async () => {
+//         const configCreatorService = new ConfigCreatorService();
+//         await configCreatorService.init();
+//     }, 1000 * 15);
+// })();
