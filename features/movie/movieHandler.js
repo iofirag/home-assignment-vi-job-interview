@@ -41,6 +41,7 @@ module.exports = class MovieHandler {
         }
     }
 
+    // For question 2
     async listMultipleCharactersActors(parentSpan) {
         const logObj = {
             prefix: `${this.constructor.name} - ${this.listMoviesByActors.name}`,
@@ -74,6 +75,7 @@ module.exports = class MovieHandler {
         }
     }
 
+    // For question 3
     async getSameRoleActors(parentSpan) {
         const logObj = {
             prefix: `${this.constructor.name} - ${this.listMoviesByActors.name}`,
