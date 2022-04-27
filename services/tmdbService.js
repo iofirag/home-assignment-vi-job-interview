@@ -8,36 +8,25 @@ module.exports = class TMDBService {
         this._tracer = tracer;
     }
 
-    async getTrendingSearchResult(str) {
-        const url = `${this._tmdbApiConfig.host2}${this._tmdbApiConfig.getTrendingSearchResult}?query=${str}`;
+    async getSearchMulti(str) {
+        const url = `${this._tmdbApiConfig.host}${this._tmdbApiConfig.basePath}${this._tmdbApiConfig.getSearchMulti}?query=${str}`;
         const fullUrl = this.addApiKey(`${url}`);
         return this._httpService.get(fullUrl);
     }
 
     async getObjectByNameAndType(name, mediaType) {
-        const { results } = await this.getTrendingSearchResult(name);
+        const { results } = await this.getSearchMulti(name);
         return results.filter((obj) => obj.media_type === mediaType);
     }
 
-    async getObjectByName(substring) {
-        const tmdbObject = await this.getTrendingSearchResult(substring);
-        return tmdbObject.results[0];
-    }
-
-    async getPersonCombinedCreditsByPersonId(id) {
-        const url = `${this._tmdbApiConfig.host}${this._tmdbApiConfig.basePath}/person/${id}${this._tmdbApiConfig.getPersonCombinedCreditsByPersonId}`;
+    async getPersonCombinedCredits(personId) {
+        const url = `${this._tmdbApiConfig.host}${this._tmdbApiConfig.basePath}/person/${personId}${this._tmdbApiConfig.getPersonCombinedCredits}`;
         const fullUrl = this.addApiKey(`${url}?`);
         return this._httpService.get(fullUrl);
     }
 
-    async getMovieDetailsById(id) {
-        const url = `${this._tmdbApiConfig.host}${this._tmdbApiConfig.basePath}${this._tmdbApiConfig.getMovieDetailsById}/${id}`;
-        const fullUrl = this.addApiKey(`${url}?`);
-        return this._httpService.get(fullUrl);
-    }
-
-    async getActorDetailsById(id) {
-        const url = `${this._tmdbApiConfig.host}${this._tmdbApiConfig.basePath}${this._tmdbApiConfig.getMovieDetailsById}/${id}`;
+    async getMovieCredits(movieId) {
+        const url = `${this._tmdbApiConfig.host}${this._tmdbApiConfig.basePath}/movie/${movieId}${this._tmdbApiConfig.getMovieCredits}`;
         const fullUrl = this.addApiKey(`${url}?`);
         return this._httpService.get(fullUrl);
     }
@@ -45,25 +34,4 @@ module.exports = class TMDBService {
     addApiKey(url) {
         return `${url}&api_key=${this._tmdbApiConfig.apiKey}`;
     }
-
-    // async getObjectIdByName(substring) {
-    //     const tmdbObject = await this.getTrendingSearchResult(substring);
-    //     return tmdbObject.results[0].id;
-    // }
-
-    // async getActorListByMovieName(name) {
-    //     // this._httpService.get()
-    // }
-
-    // async getMovieDetailsByName(name) {
-    //     const movieId = this.getMovieIdByMovieName(name);
-    //     return this.getMovieDetailsById(movieId);
-    // }
-
-    // getMovieIdByMovieName(movieName) {
-    //     return this._config.movieIdMap[movieName]
-    // }
-
-    // async listMoviesByActors() {
-    // }
 };

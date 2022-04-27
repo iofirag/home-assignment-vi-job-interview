@@ -21,7 +21,6 @@ const container = require('./containerConfig');
 
     try {
         const options = {
-            // swaggerUi: '/swagger.json',
             controllers: './controllers',
             useStabs: process.env.NODE_ENV === 'development', // Conditionally turn on stubs (mock mode)
         };
@@ -72,7 +71,6 @@ const container = require('./containerConfig');
 
             // Start the server
             await probe.start(app, serverPort);
-            // await tmdbService.init();
             probe.readyFlag = true;
             logger.log('info', `your server is listening on port ${serverPort} http://${swaggerDoc.host}`);
             logger.log('info', `Swagger-ui is available on http://${swaggerDoc.host}/docs`);

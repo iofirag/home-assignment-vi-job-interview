@@ -27,10 +27,9 @@
             "host2": "https://www.themoviedb.org",
             "basePath": "/3",
             "apiKey": "ac505a02032a33d65dd28b41f72182e1",
-            "authentication": "/authentication/token/new",
-            "getMovieDetailsById": "/movie",
-            "getTrendingSearchResult": "/search/trending",
-            "getPersonCombinedCreditsByPersonId": "/combined_credits"
+            "getSearchMulti": "/search/multi",
+            "getPersonCombinedCredits": "/combined_credits",
+            "getMovieCredits": "/credits"
         }
     },
     "questionData": {

@@ -5,10 +5,9 @@ const TmdbService = require('./services/tmdbService');
 const Logger = require('./services/loggerService');
 const Probe = require("./services/probeService");
 const Tracer = require("./services/tracerService");
-const pkgJson = require("./package.json");
-
 const MovieService = require("./features/movie/movieService");
 const MovieHandler = require("./features/movie/movieHandler");
+const pkgJson = require("./package.json");
 
 const container = Awilix.createContainer({
     injectionMode: Awilix.InjectionMode.CLASSIC,
@@ -18,9 +17,6 @@ container.register({
     source: Awilix.asValue(config.get("source")),
     swaggerConfig: Awilix.asValue(config.get("swagger")),
     serverConfig: Awilix.asValue(config.get('server')),
-    // tracerConfig: Awilix.asValue(config.get('tracer')),
-    // loggerConfig: Awilix.asValue(config.get('log')),
-    // apiConfig: Awilix.asValue(config.get('api')),
     serviceData: Awilix.asValue({
         name: pkgJson.name,
         component: pkgJson.name,

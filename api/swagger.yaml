@@ -15,8 +15,6 @@ paths:
       responses:
         200:
           description: "ok"
-          # schema:
-            # $ref: '#/definitions/listMoviesByActorsResponse'
         400:
           description: "bad result"
         500:
@@ -32,8 +30,6 @@ paths:
       responses:
         200:
           description: "ok"
-          # schema:
-            # $ref: '#/definitions/listMultipleCharactersActorsResponse'
         400:
           description: "bad result"
         500:
@@ -49,18 +45,7 @@ paths:
       responses:
         200:
           description: "ok"
-          # schema:
-            # $ref: '#/definitions/getSameRoleActorsResponse'
         400:
           description: "bad result"
         500:
           description: "server error"
-
-definitions:
-  listMoviesByActors:
-    type: "object"
-    required:
-      - "yourname"
-    properties:
-      yourname:
-        type: "string"

@@ -22,10 +22,10 @@ module.exports = class MovieHandler {
             await Promise.all(
                 this._config.peopleList.map(async (actorName) => {
                     const objectList = await this._tmdbService.getObjectByNameAndType(actorName, 'person');
+                    const [person] = objectList;
                     if (objectList.length) {
-                        const combinedCreditObj = await this._tmdbService.getPersonCombinedCreditsByPersonId(objectList[0].id);
-                        const movieList = combinedCreditObj.cast.filter((obj) => obj.media_type === 'movie').map((obj) => obj.title);
-                        actorMoviesMap[actorName] = movieList;
+                        const personMovieList = await this.getMarvelMovieList(person.id);
+                        actorMoviesMap[actorName] = personMovieList;
                     }
                 })
             );
@@ -49,20 +49,20 @@ module.exports = class MovieHandler {
         };
         const span = this._tracer.startSpan(logObj.prefix, { childOf: parentSpan });
         try {
-            const actorPlayMoreThanOne = [];
+            const actorPlayMoreThanOneMovie = [];
             await Promise.all(
                 this._config.peopleList.map(async (actorName) => {
                     const objectList = await this._tmdbService.getObjectByNameAndType(actorName, 'person');
+                    const [person] = objectList;
                     if (objectList.length) {
-                        const combinedCreditObj = await this._tmdbService.getPersonCombinedCreditsByPersonId(objectList[0].id);
-                        const movieList = combinedCreditObj.cast.filter((obj) => obj.media_type === 'movie').map((obj) => obj.title);
-                        if (movieList.length > 1) {
-                            actorPlayMoreThanOne.push(actorName);
+                        const personMovieList = await this.getMarvelMovieList(person.id);
+                        if (personMovieList.length > 1) {
+                            actorPlayMoreThanOneMovie.push(actorName);
                         }
                     }
                 })
             );
-            return actorPlayMoreThanOne;
+            return actorPlayMoreThanOneMovie;
         } catch (error) {
             span.setTag(opentracing.Tags.ERROR, true);
             logObj.isError = true;
@@ -82,7 +82,36 @@ module.exports = class MovieHandler {
         };
         const span = this._tracer.startSpan(logObj.prefix, { childOf: parentSpan });
         try {
-            // return await this._tmdbService.
+            let isSameRoleActors = false;
+            let exampleActorList = [];
+            let movieTitle = '';
+            let character = '';
+            await Promise.all(
+                this._config.movieList.map(async (movieName) => {
+                    const objectList = await this._tmdbService.getObjectByNameAndType(movieName, 'movie');
+                    const [movie] = objectList;
+                    if (objectList.length) {
+                        const castObj = await this._tmdbService.getMovieCredits(movie.id);
+                        const characterMap = {};
+                        if (isSameRoleActors) return;
+                        isSameRoleActors = castObj.cast.some((actor) => {
+                            if (characterMap[actor.character]) {
+                                exampleActorList = [...characterMap[actor.character], actor.name];
+                                movieTitle = movie.title;
+                                character = actor.character;
+                                return true;
+                            } else {
+                                characterMap[actor.character] = [actor.name];
+                                return false;
+                            }
+                        });
+                    }
+                })
+            );
+            return {
+                isSameRoleActors,
+                ...(isSameRoleActors && { exampleActorList, movieTitle, character }),
+            };
         } catch (error) {
             span.setTag(opentracing.Tags.ERROR, true);
             logObj.isError = true;
@@ -92,5 +121,13 @@ module.exports = class MovieHandler {
             this._logger.log(logObj.isError ? 'error' : 'info', `${logObj.prefix} - ${logObj.msg}`, span);
             span.finish();
         }
+    }
+
+    async getMarvelMovieList(personId) {
+        const combinedCreditObj = await this._tmdbService.getPersonCombinedCredits(personId);
+        const movieList = combinedCreditObj.cast
+            .filter((obj) => obj.media_type === 'movie' && this._config.movieList.includes(obj.title))
+            .map((obj) => obj.title);
+        return movieList;
     }
 };
