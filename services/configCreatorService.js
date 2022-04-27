@@ -27,9 +27,14 @@ module.exports = class ConfigCreatorService {
             msg: 'success',
         };
         try {
-            this._keysMapping = await this._etcdClient.getAll().prefix('/configuration/testservice/');
-            await this.buildJsonFromTemplate();
-            await this.saveLocalFile();
+            try {
+                this._keysMapping = await this._etcdClient.getAll().prefix('/configuration/testservice/');
+            } catch (error) {
+                this._keysMapping = {};
+            } finally {
+                await this.buildJsonFromTemplate();
+                await this.saveLocalFile();
+            }
         } catch (error) {
             console.error(error);
             logObj.isError = true;
