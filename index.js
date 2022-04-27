@@ -24,7 +24,7 @@ const container = require('./containerConfig');
             },
             ...swaggerConfig,
         };
-        const { app } = oasTools.expressAppConfig('./api/swagger.yaml', oasOptions);
+        const { app } = oasTools.expressAppConfig('./api/oas.yaml', oasOptions);
         app.use(cors());
         app.use(cookieParser());
         app.use(bodyParser.json({ limit: '50mb' }));
