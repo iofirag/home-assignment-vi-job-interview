@@ -6,7 +6,7 @@ config, probe, server, Dockerfile, logger, eslint, dependency-injection, nodemon
 
 ## RUN:
     $ yarn run start  
-navigate to http://localhost:3001/docs/  
+    navigate to http://localhost:3001/docs/  
 
 
 <!-- run local with docker: -->
